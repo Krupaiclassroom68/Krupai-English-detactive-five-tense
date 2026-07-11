@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>Tense Detective Mixed Exam | Kru Pai Classroom</title>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#07132f; --mid:#12205a; --violet:#5d3ca8; --gold:#ffd66b; --gold2:#ffb72c;
+  --cyan:#69ecff; --pink:#ff74c9; --green:#8cffbd; --red:#ff5576; --orange:#ff9d4a;
+  --white:#fff; --ink:#171a3c; --soft:rgba(255,255,255,.16); --line:rgba(255,255,255,.28);
+}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;min-height:100%;font-family:'Prompt',sans-serif;color:#fff;background:#07132f;overflow:hidden}
+button,input{font-family:inherit}
+body{
+  background:
+    radial-gradient(circle at 16% 14%,rgba(105,236,255,.28),transparent 25%),
+    radial-gradient(circle at 86% 18%,rgba(255,116,201,.22),transparent 24%),
+    radial-gradient(circle at 46% 94%,rgba(255,214,107,.22),transparent 30%),
+    linear-gradient(135deg,#07132f,#101b54 45%,#482b83);
+}
+.bg{position:fixed;inset:0;overflow:hidden;pointer-events:none}
+.stars,.stars:before,.stars:after{content:"";position:absolute;inset:-30%;background-image:radial-gradient(#fff 1.2px,transparent 1.2px);background-size:44px 44px;opacity:.25;animation:starMove 42s linear infinite}.stars:before{background-size:85px 85px;opacity:.15;animation-duration:70s}.stars:after{background-size:130px 130px;opacity:.1;animation-duration:95s}@keyframes starMove{to{transform:translateY(320px)}}
+.moon{position:absolute;right:9vw;top:5vh;width:110px;height:110px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff,#fff4b8 55%,#ffd66b);box-shadow:0 0 50px rgba(255,214,107,.62);opacity:.88}.moon:after{content:"";position:absolute;left:30px;top:16px;width:100px;height:100px;border-radius:50%;background:#12205a;opacity:.62}
+.city{position:absolute;left:0;right:0;bottom:0;height:24vh;background:linear-gradient(transparent,rgba(0,0,0,.36))}.building{position:absolute;bottom:0;width:8vw;min-width:55px;background:linear-gradient(#18255b,#0a1029);border-top-left-radius:8px;border-top-right-radius:8px;box-shadow:inset 0 12px 18px rgba(255,255,255,.04)}.building:before{content:"";position:absolute;inset:18px 10px;background-image:linear-gradient(90deg,#ffd66b 8px,transparent 8px),linear-gradient(#ffd66b 8px,transparent 8px);background-size:24px 28px;opacity:.5}.b1{left:0;height:58%}.b2{left:8%;height:86%}.b3{left:17%;height:67%}.b4{left:27%;height:92%}.b5{left:39%;height:63%}.b6{left:52%;height:80%}.b7{left:64%;height:60%}.b8{left:76%;height:88%}.b9{left:88%;height:70%}
+.flashlight{position:absolute;left:-20vw;top:8vh;width:78vw;height:38vh;background:linear-gradient(82deg,rgba(255,235,150,.36),rgba(255,235,150,.08),transparent 70%);clip-path:polygon(0 40%,100% 0,100% 100%,0 60%);filter:blur(1px);transform-origin:left center;animation:sweep 6s ease-in-out infinite}@keyframes sweep{0%,100%{transform:rotate(-9deg);opacity:.45}50%{transform:rotate(12deg);opacity:.75}}
+.floater{position:absolute;font-size:clamp(24px,3.5vw,54px);filter:drop-shadow(0 12px 18px rgba(0,0,0,.28));animation:floaty 3.6s ease-in-out infinite}.f1{left:7vw;top:16vh}.f2{right:18vw;top:24vh;animation-delay:.5s}.f3{left:15vw;bottom:18vh;animation-delay:1s}.f4{right:8vw;bottom:23vh;animation-delay:1.4s}@keyframes floaty{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-14px) rotate(6deg)}}
+.screen{display:none;position:relative;width:100vw;height:100dvh;overflow:hidden;padding:clamp(10px,2vw,22px);z-index:2}.screen.active{display:flex;flex-direction:column}.center{align-items:center;justify-content:center;text-align:center}
+.panel{background:linear-gradient(145deg,rgba(255,255,255,.2),rgba(255,255,255,.08));border:1px solid var(--line);border-radius:30px;box-shadow:0 24px 70px rgba(0,0,0,.34),inset 0 0 28px rgba(255,255,255,.06);backdrop-filter:blur(13px);padding:clamp(14px,2.4vw,30px)}
+.logo{font-size:clamp(17px,2vw,24px);font-weight:900;letter-spacing:.4px;color:#fff;text-shadow:0 0 18px rgba(105,236,255,.82)}
+.title{font-size:clamp(42px,7.8vw,105px);line-height:.95;margin:10px 0 4px;font-weight:900;letter-spacing:1px;background:linear-gradient(90deg,#fff,#fff3a1,#ffd66b,#69ecff,#ff9bd9);-webkit-background-clip:text;color:transparent;text-shadow:0 0 34px rgba(255,214,107,.24)}
+.subtitle{font-size:clamp(16px,2.1vw,25px);line-height:1.45;color:#fff7d8;max-width:980px;margin:10px auto}.namebox{width:min(520px,92vw);font-size:21px;text-align:center;border:none;border-radius:20px;padding:15px 18px;background:#fff;color:#111d44;outline:4px solid rgba(255,214,107,.22);font-weight:800;margin:12px auto}
+.btn{border:none;border-radius:999px;padding:13px 25px;font-size:clamp(17px,2vw,24px);font-weight:900;cursor:pointer;color:#21133c;background:linear-gradient(135deg,#fff,#ffe27b,#ffbd36);box-shadow:0 10px 0 #9d640e,0 18px 30px rgba(0,0,0,.28);transition:.14s;position:relative;overflow:hidden}.btn:after{content:"";position:absolute;inset:-45% auto -45% -55%;width:45%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.9),transparent);transform:skewX(-18deg);animation:shine 2.2s ease-in-out infinite}.btn:hover{transform:translateY(-3px) scale(1.02)}.btn:active{transform:translateY(6px);box-shadow:0 4px 0 #9d640e,0 10px 18px rgba(0,0,0,.25)}.btn.secondary{background:linear-gradient(135deg,#fff,#9df5ff);box-shadow:0 10px 0 #117b95}.btn.pink{background:linear-gradient(135deg,#fff,#ff9bdd);box-shadow:0 10px 0 #9e216c}.btn.small{font-size:15px;padding:9px 15px;box-shadow:none}@keyframes shine{0%{left:-55%;opacity:0}22%{opacity:1}58%{left:120%;opacity:.8}100%{left:130%;opacity:0}}
+.row{display:flex;gap:12px;justify-content:center;align-items:center;flex-wrap:wrap}.startWrap{width:min(1160px,96vw);position:relative}.detective{font-size:clamp(72px,11vw,160px);filter:drop-shadow(0 20px 25px rgba(0,0,0,.35));animation:detectiveBob 2.8s ease-in-out infinite}@keyframes detectiveBob{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-10px) rotate(3deg)}}
+.caseGrid{display:grid;grid-template-columns:1fr 1.25fr 1fr;gap:14px;align-items:stretch;margin-top:12px}.caseCard{border-radius:24px;padding:15px;background:rgba(0,0,0,.22);border:1px solid rgba(255,255,255,.25);min-height:130px;display:flex;flex-direction:column;justify-content:center}.stamp{display:inline-block;transform:rotate(-8deg);border:4px solid #ff5576;color:#ff8ea2;border-radius:12px;padding:5px 12px;font-size:clamp(18px,2.2vw,28px);font-weight:900;letter-spacing:1px;text-shadow:none;background:rgba(255,255,255,.08)}.missionBig{font-size:clamp(22px,2.8vw,36px);font-weight:900;color:var(--gold)}.levelStrip{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}.level{border-radius:18px;padding:10px 8px;font-weight:900;color:#12173a;background:linear-gradient(135deg,#fff,#dffaff)}.level:nth-child(2){background:linear-gradient(135deg,#fff,#ffe07a)}.level:nth-child(3){background:linear-gradient(135deg,#fff,#ff9aad)}
+.topbar{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;margin-bottom:10px}.statline{display:flex;gap:8px;align-items:center;justify-content:flex-end;flex-wrap:wrap}.pill{border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.14);border-radius:999px;padding:8px 12px;font-weight:900;font-size:clamp(13px,1.45vw,18px);white-space:nowrap}.quizPanel{flex:1;min-height:0;display:flex;flex-direction:column;gap:12px;position:relative}.timerOuter{height:19px;border-radius:999px;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.28);overflow:hidden}.timerBar{height:100%;width:100%;background:linear-gradient(90deg,#8cffbd,#ffe27b,#ff5576);transition:width .1s linear}.caseHeader{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}.caseBadge{font-size:clamp(22px,3vw,42px);font-weight:900;color:#fff;background:linear-gradient(135deg,rgba(255,214,107,.28),rgba(105,236,255,.14));border:1px solid rgba(255,255,255,.25);border-radius:22px;padding:8px 16px}.sentenceBox{flex:0 0 auto;background:linear-gradient(135deg,#fff,#f1f9ff 58%,#fff2c7);color:#13183d;border:4px solid rgba(255,214,107,.88);border-radius:28px;padding:clamp(18px,3vw,36px);font-size:clamp(27px,4.4vw,62px);line-height:1.2;font-weight:900;text-align:center;box-shadow:0 14px 0 rgba(255,183,44,.33),0 20px 34px rgba(0,0,0,.2)}.hintThai{font-size:clamp(15px,1.8vw,22px);color:#5b6385;margin-top:8px;font-weight:700}.choices{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;flex:1;min-height:0}.choice{border:3px solid rgba(255,255,255,.72);border-radius:22px;background:linear-gradient(145deg,#fff,#eafaff);color:#11183d;font-weight:900;font-size:clamp(15px,1.75vw,23px);padding:14px 10px;cursor:pointer;box-shadow:0 8px 0 rgba(27,36,110,.32),0 14px 22px rgba(0,0,0,.16);transition:.12s;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px}.choice:hover{transform:translateY(-3px) scale(1.015);filter:brightness(1.06)}.choice .ico{font-size:clamp(26px,3vw,44px)}.choice.correct{background:linear-gradient(135deg,#fff,#8cffbd);border-color:#8cffbd}.choice.wrong{background:linear-gradient(135deg,#fff,#ff9aac);border-color:#ff5576}.shake{animation:shake .35s ease}@keyframes shake{10%,90%{transform:translateX(-2px)}20%,80%{transform:translateX(5px)}30%,50%,70%{transform:translateX(-9px)}40%,60%{transform:translateX(9px)}}
+.overlay{position:fixed;inset:0;background:rgba(4,8,28,.66);backdrop-filter:blur(8px);z-index:30;display:none;place-items:center;padding:14px}.overlay.show{display:grid}.modal{width:min(880px,95vw);max-height:88dvh;overflow:auto;background:linear-gradient(145deg,#fff,#f2fbff 55%,#fff4ca);color:#14183f;border-radius:34px;padding:clamp(17px,2.5vw,28px);box-shadow:0 30px 90px rgba(0,0,0,.45),0 0 0 6px rgba(255,214,107,.45);text-align:center;animation:modalPop .2s ease}@keyframes modalPop{from{transform:scale(.86);opacity:.2}to{transform:scale(1);opacity:1}}.modal h2{margin:0 0 8px;font-size:clamp(30px,4.7vw,58px);line-height:1;color:#22205a}.tenseTag{display:inline-block;border-radius:999px;padding:8px 16px;color:white;font-weight:900;font-size:clamp(20px,2.4vw,31px);margin:8px 0;background:linear-gradient(135deg,#5138c4,#ff74c9)}.evidenceGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}.evidence{background:#fff;border:3px solid #d9e8ff;border-radius:20px;padding:12px;font-weight:900;color:#171a3c;box-shadow:0 10px 18px rgba(25,40,90,.1)}.evidence b{display:block;color:#2b2387;font-size:clamp(17px,1.9vw,23px)}.explain{font-size:clamp(16px,1.8vw,22px);font-weight:800;line-height:1.45;color:#24305f;background:#eff7ff;border-radius:20px;padding:12px;margin-top:8px}.stampSolved{display:inline-block;font-size:clamp(34px,6vw,76px);font-weight:900;color:#20a25d;border:7px solid #20c56f;border-radius:18px;padding:4px 18px;transform:rotate(-8deg);opacity:.92}.stampWrong{color:#d11c49;border-color:#ff5576}.guideList{text-align:left;font-weight:800;line-height:1.7}.guideList b{color:#35238d}.resultGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0}.resultCard{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.24);border-radius:22px;padding:14px}.resultCard b{display:block;font-size:clamp(24px,4vw,46px);color:var(--gold)}.reviewBox{max-height:42vh;overflow:auto;text-align:left;margin-top:12px}.reviewItem{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.22);border-radius:18px;padding:10px 13px;margin:8px 0}.miniTag{display:inline-block;border-radius:999px;background:rgba(0,0,0,.23);padding:3px 8px;margin:2px;font-weight:900}.confetti{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:60}.piece{position:absolute;top:-20px;width:9px;height:16px;background:#ffd66b;animation:fall 1.9s linear forwards}@keyframes fall{to{transform:translateY(110vh) rotate(620deg);opacity:.25}}
+@media(max-width:980px){html,body{overflow:auto}.screen{height:auto;min-height:100dvh;overflow:auto}.caseGrid{grid-template-columns:1fr}.choices{grid-template-columns:1fr}.choice{font-size:19px;min-height:72px}.sentenceBox{font-size:30px}.evidenceGrid,.resultGrid,.levelStrip{grid-template-columns:1fr}.topbar{grid-template-columns:1fr}.statline{justify-content:flex-start}.moon{width:70px;height:70px}.city{height:15vh}.floater{opacity:.55}}
+
+html,body{margin:0;padding:0;overflow-x:hidden;overflow-y:auto;}
+*{box-sizing:border-box;}
+.start-screen,.hero,.container{max-width:100%;}
+body{min-min-height:100vh;}
+@media (max-width:900px){
+  .hero,.panel,.card{width:min(94vw,900px)!important;max-width:94vw!important;padding:16px!important;}
+  h1{font-size:clamp(2rem,8vw,3.4rem)!important;}
+  .subtitle,p{font-size:1rem!important;}
+  .start-buttons,.button-group{display:flex;flex-direction:column;gap:12px;align-items:center;}
+  button,.btn{width:100%;max-width:320px;}
+}
+
+
+
+/* === V3: anti-overflow start screen fix === */
+html, body{
+  width:100%;
+  min-height:100%;
+  overflow-x:hidden !important;
+  overflow-y:auto !important;
+}
+body{
+  min-height:100dvh;
+}
+.screen{
+  height:auto !important;
+  min-height:100dvh !important;
+  overflow-x:hidden !important;
+  overflow-y:auto !important;
+  -webkit-overflow-scrolling:touch;
+}
+.screen.center{
+  justify-content:flex-start !important;
+  align-items:center;
+}
+#start{
+  padding:10px 10px 22px !important;
+}
+#start .startWrap{
+  width:min(1040px,96vw) !important;
+  margin:0 auto 20px !important;
+  padding:12px clamp(12px,2vw,22px) !important;
+}
+#start .logo{font-size:clamp(14px,1.7vw,20px) !important;}
+#start .detective{
+  font-size:clamp(44px,7vw,88px) !important;
+  line-height:1 !important;
+  margin-top:0 !important;
+}
+#start .title{
+  font-size:clamp(34px,6.2vw,76px) !important;
+  line-height:.95 !important;
+  margin:4px 0 2px !important;
+}
+#start .subtitle{
+  font-size:clamp(14px,1.65vw,19px) !important;
+  line-height:1.35 !important;
+  margin:6px auto !important;
+}
+#start .namebox{
+  font-size:clamp(15px,1.7vw,19px) !important;
+  padding:10px 14px !important;
+  margin:8px auto !important;
+}
+#start .caseGrid{
+  margin-top:8px !important;
+  gap:10px !important;
+}
+#start .caseCard{
+  min-height:0 !important;
+  padding:10px !important;
+  border-radius:18px !important;
+}
+#start .missionBig{font-size:clamp(17px,2vw,25px) !important;}
+#start .stamp{font-size:clamp(14px,1.6vw,20px) !important;border-width:3px !important;padding:3px 9px !important;}
+#start .levelStrip{gap:6px !important;margin-top:6px !important;}
+#start .level{padding:7px 5px !important;border-radius:14px !important;font-size:clamp(12px,1.35vw,16px) !important;}
+#start .row{margin-top:10px !important;}
+#start .btn{
+  font-size:clamp(15px,1.7vw,20px) !important;
+  padding:10px 18px !important;
+}
+@media(max-width:980px){
+  #start .caseGrid{grid-template-columns:1fr !important;}
+  #start .caseCard:nth-child(1),
+  #start .caseCard:nth-child(3){display:none !important;}
+  #start .btn{width:100%;max-width:340px;}
+  .floater,.city,.moon{opacity:.35;}
+}
+@media(max-height:760px) and (min-width:981px){
+  #start .caseGrid{grid-template-columns:.85fr 1.35fr .85fr !important;}
+  #start .caseCard{font-size:13px !important;}
+  #start .detective{font-size:54px !important;}
+  #start .title{font-size:54px !important;}
+  #start .subtitle{font-size:15px !important;}
+  #start .namebox{padding:8px 12px !important;margin:6px auto !important;}
+  #start .btn{padding:9px 16px !important;font-size:16px !important;}
+}
+
+
+
+/* ===== V4 Compact Feedback: เห็นครบในจอเดียว ===== */
+#feedbackOverlay{
+  padding:8px !important;
+  align-items:center !important;
+}
+#feedbackModal.modal{
+  width:min(740px,94vw) !important;
+  max-height:94dvh !important;
+  overflow:hidden !important;
+  border-radius:24px !important;
+  padding:clamp(10px,1.8vw,18px) !important;
+  box-shadow:0 24px 72px rgba(0,0,0,.42),0 0 0 4px rgba(255,214,107,.42) !important;
+}
+#feedbackModal .stampSolved{
+  font-size:clamp(22px,4.1vw,46px) !important;
+  border-width:5px !important;
+  border-radius:14px !important;
+  padding:2px 13px !important;
+  margin-bottom:2px !important;
+  line-height:1.05 !important;
+  animation:stampDrop .28s ease both;
+}
+@keyframes stampDrop{from{transform:scale(1.25) rotate(-12deg);opacity:.15}to{transform:scale(1) rotate(-8deg);opacity:.95}}
+#feedbackModal .fbTitle{
+  margin:2px 0 4px !important;
+  font-size:clamp(19px,2.8vw,32px) !important;
+  line-height:1.1 !important;
+  color:#22205a;
+  font-weight:900;
+}
+#feedbackModal .tenseTag{
+  font-size:clamp(16px,2vw,24px) !important;
+  padding:5px 12px !important;
+  margin:2px 0 7px !important;
+}
+#feedbackModal .caseSentence{
+  background:linear-gradient(135deg,#151b46,#263078);
+  color:#fff;
+  border-radius:17px;
+  padding:8px 12px;
+  font-size:clamp(17px,2.25vw,26px);
+  line-height:1.22;
+  font-weight:900;
+  box-shadow:inset 0 0 0 2px rgba(255,255,255,.14);
+}
+#feedbackModal .caseThai{
+  font-size:clamp(12px,1.45vw,16px);
+  color:#69708b;
+  font-weight:800;
+  margin-top:3px;
+}
+#feedbackModal .evidenceGrid{
+  grid-template-columns:repeat(3,1fr) !important;
+  gap:7px !important;
+  margin:8px 0 !important;
+}
+#feedbackModal .evidence{
+  padding:8px 7px !important;
+  border-radius:15px !important;
+  border-width:2px !important;
+  font-size:clamp(12px,1.55vw,17px) !important;
+  line-height:1.22 !important;
+  box-shadow:0 7px 12px rgba(25,40,90,.08) !important;
+}
+#feedbackModal .evidence b{
+  font-size:clamp(12px,1.45vw,16px) !important;
+  margin-bottom:2px;
+}
+#feedbackModal .explain{
+  font-size:clamp(13px,1.58vw,18px) !important;
+  line-height:1.3 !important;
+  padding:8px 10px !important;
+  border-radius:15px !important;
+  margin-top:6px !important;
+}
+#feedbackModal .fbButton{
+  margin-top:8px !important;
+  padding:9px 18px !important;
+  font-size:clamp(14px,1.7vw,18px) !important;
+  box-shadow:0 7px 0 #9d640e,0 13px 22px rgba(0,0,0,.22) !important;
+}
+@media(max-width:700px){
+  #feedbackModal.modal{width:96vw !important;max-height:96dvh !important;padding:10px !important;border-radius:20px !important;}
+  #feedbackModal .evidenceGrid{grid-template-columns:1fr !important;gap:5px !important;margin:6px 0 !important;}
+  #feedbackModal .evidence{padding:6px 8px !important;}
+  #feedbackModal .caseSentence{font-size:20px;padding:7px 9px;}
+  #feedbackModal .explain{padding:7px 8px !important;margin-top:5px !important;}
+  #feedbackModal .stampSolved{font-size:26px !important;border-width:4px !important;}
+}
+@media(max-height:640px){
+  #feedbackModal.modal{transform:scale(.92); transform-origin:center;}
+  #feedbackModal .caseThai{display:none;}
+  #feedbackModal .explain{font-size:13px !important;padding:6px 8px !important;}
+  #feedbackModal .evidence{font-size:12px !important;padding:5px 6px !important;}
+  #feedbackModal .fbButton{padding:7px 14px !important;margin-top:6px !important;}
+}
+
+</style>
+</head>
+<body>
+<div class="bg"><div class="stars"></div><div class="moon"></div><div class="flashlight"></div><div class="city"><div class="building b1"></div><div class="building b2"></div><div class="building b3"></div><div class="building b4"></div><div class="building b5"></div><div class="building b6"></div><div class="building b7"></div><div class="building b8"></div><div class="building b9"></div></div><div class="floater f1">🔎</div><div class="floater f2">📂</div><div class="floater f3">🧭</div><div class="floater f4">✨</div></div>
+<div class="confetti" id="confetti"></div>
+
+<section id="start" class="screen active center">
+  <div class="panel startWrap">
+    <div class="logo">Kru Pai Classroom ✨ English Game Zone</div>
+    <div class="detective">🕵️‍♀️🔦</div>
+    <h1 class="title">TENSE DETECTIVE</h1>
+    <p class="subtitle">อ่านข้อความ หา “หลักฐาน” แล้วจับให้ได้ว่าเป็น Tense อะไร — 30 Case จับเวลาไต่ระดับ สืบไว จำไว สนุกมาก! 🔎</p>
+    <input id="playerName" class="namebox" placeholder="พิมพ์ชื่อเล่นนักสืบก่อนเริ่ม" />
+    <div class="caseGrid">
+      <div class="caseCard"><span class="stamp">TOP SECRET</span><div class="missionBig">📂 CASE FILE 001</div><div>Classified Grammar Mission</div></div>
+      <div class="caseCard"><div class="missionBig">🎯 Mission: Mixed 30 Cases</div><div class="levelStrip"><div class="level">Case 1-10<br>⏱ 15 วิ</div><div class="level">Case 11-20<br>⏱ 10 วิ</div><div class="level">Case 21-30<br>⏱ 7 วิ</div></div></div>
+      <div class="caseCard"><div class="missionBig">🏆 Rank</div><div>Junior → Senior → Master → Tense Legend</div><div id="bestBox" style="margin-top:8px;color:#ffd66b;font-weight:900">Best: -</div></div>
+    </div>
+    <div class="row" style="margin-top:18px"><button class="btn" onclick="startGame()">▶ START INVESTIGATION</button><button class="btn secondary" onclick="openGuide()">📜 Detective Guide</button></div>
+  </div>
+</section>
+
+<section id="game" class="screen">
+  <div class="topbar"><div class="logo">🕵️ Tense Detective | Find the Evidence</div><div class="statline"><div class="pill" id="namePill">นักสืบ</div><div class="pill" id="casePill">CASE 01/30</div><div class="pill" id="scorePill">⭐ 0</div><div class="pill" id="timePill">⏱ 15</div></div></div>
+  <div class="panel quizPanel" id="quizPanel">
+    <div class="timerOuter"><div class="timerBar" id="timerBar"></div></div>
+    <div class="caseHeader"><div class="caseBadge" id="caseBadge">📂 CASE 01</div><div class="pill" id="levelPill">🟢 Level 1</div></div>
+    <div class="sentenceBox"><div id="sentenceText">I play football every day.</div><div class="hintThai" id="thaiHint">ฉันเล่นฟุตบอลทุกวัน</div></div>
+    <div class="choices" id="choices"></div>
+  </div>
+</section>
+
+<section id="result" class="screen center">
+  <div class="panel" style="width:min(1050px,96vw)">
+    <div class="logo">Mission Report ✨</div>
+    <h1 class="title" style="font-size:clamp(42px,6vw,82px)">CASE CLOSED</h1>
+    <div class="subtitle" id="rankText"></div>
+    <div class="resultGrid"><div class="resultCard">คะแนน<b id="finalScore">0</b></div><div class="resultCard">ถูกต้อง<b id="finalCorrect">0/30</b></div><div class="resultCard">ความแม่นยำ<b id="finalPct">0%</b></div><div class="resultCard">Rank<b id="finalRank">-</b></div></div>
+    <div class="reviewBox" id="reviewBox"></div>
+    <div class="row" style="margin-top:14px"><button class="btn" onclick="startGame()">🔁 เล่นใหม่</button><button class="btn secondary" onclick="go('start')">กลับหน้าแรก</button></div>
+  </div>
+</section>
+
+<div id="feedbackOverlay" class="overlay"><div class="modal" id="feedbackModal"></div></div>
+<div id="guideOverlay" class="overlay" onclick="closeGuide(event)"><div class="modal" onclick="event.stopPropagation()"><h2>📜 Detective Guide</h2><div class="guideList"><p><b>Present Simple</b> ➜ V1 / V1+s, every day, usually</p><p><b>Present Continuous</b> ➜ is/am/are + V-ing, now, Look!</p><p><b>Past Simple</b> ➜ V2 หรือ did not + V1, yesterday, last...</p><p><b>Future Simple</b> ➜ will + V1, tomorrow, next...</p><p><b>Present Perfect</b> ➜ has/have + V3, already, just, ever, since, for</p></div><button class="btn" onclick="closeGuide()">เข้าใจแล้ว 🔎</button></div></div>
+
+<script>
+const TENSES=[
+ {key:'present-simple',label:'Present Simple',icon:'🟦'},
+ {key:'present-continuous',label:'Present Continuous',icon:'🟩'},
+ {key:'past-simple',label:'Past Simple',icon:'🟪'},
+ {key:'future-simple',label:'Future Simple',icon:'🟧'},
+ {key:'present-perfect',label:'Present Perfect',icon:'🟨'}
+];
+const questions=[
+ {s:'She plays tennis every Sunday.',th:'เธอเล่นเทนนิสทุกวันอาทิตย์',t:'present-simple',ev:['plays = V1+s','every Sunday','กิจวัตร/ทำเป็นประจำ'],ex:'Present Simple ใช้กับสิ่งที่ทำเป็นประจำ หรือข้อเท็จจริง'},
+ {s:'They go to school by bus.',th:'พวกเขาไปโรงเรียนโดยรถบัส',t:'present-simple',ev:['go = V1','ไม่มี did / will / has','การกระทำทั่วไป'],ex:'ประธานพหูพจน์ใช้ V1 ไม่เติม s'},
+ {s:'My brother usually drinks milk.',th:'น้องชายของฉันมักดื่มนม',t:'present-simple',ev:['usually','drinks = V1+s','นิสัย/ความเคยชิน'],ex:'usually เป็นคำบอกความถี่ที่เจอบ่อยใน Present Simple'},
+ {s:'The sun rises in the east.',th:'ดวงอาทิตย์ขึ้นทางทิศตะวันออก',t:'present-simple',ev:['rises = V1+s','ข้อเท็จจริง','เกิดซ้ำเสมอ'],ex:'ข้อเท็จจริงทั่วไปใช้ Present Simple'},
+ {s:'I do not like spicy food.',th:'ฉันไม่ชอบอาหารเผ็ด',t:'present-simple',ev:['do not + V1','like = V1','ความชอบทั่วไป'],ex:'ปฏิเสธ Present Simple ใช้ do/does not + V1'},
+ {s:'Look! The cat is sleeping.',th:'ดูสิ! แมวกำลังนอน',t:'present-continuous',ev:['Look!','is + sleeping','กำลังเกิดขึ้นตอนนี้'],ex:'Present Continuous ใช้ is/am/are + V-ing'},
+ {s:'We are studying English now.',th:'พวกเรากำลังเรียนภาษาอังกฤษตอนนี้',t:'present-continuous',ev:['are + studying','now','กำลังทำอยู่'],ex:'now เป็นหลักฐานชัดของเหตุการณ์ที่กำลังเกิดขึ้น'},
+ {s:'I am writing a letter.',th:'ฉันกำลังเขียนจดหมาย',t:'present-continuous',ev:['am + writing','V-ing','กำลังทำ'],ex:'I ใช้ am แล้วตามด้วยกริยาเติม ing'},
+ {s:'The students are listening carefully.',th:'นักเรียนกำลังฟังอย่างตั้งใจ',t:'present-continuous',ev:['are + listening','V-ing','กำลังฟัง'],ex:'ประธานพหูพจน์ใช้ are + V-ing'},
+ {s:'Mom is cooking dinner right now.',th:'แม่กำลังทำอาหารเย็นตอนนี้',t:'present-continuous',ev:['is + cooking','right now','กำลังเกิดขึ้น'],ex:'right now ช่วยบอกว่ากำลังเกิดขึ้นในปัจจุบัน'},
+ {s:'He went to the market yesterday.',th:'เขาไปตลาดเมื่อวาน',t:'past-simple',ev:['went = V2','yesterday','เหตุการณ์จบแล้ว'],ex:'Past Simple ใช้กับเหตุการณ์ในอดีตที่จบแล้ว'},
+ {s:'They watched a movie last night.',th:'พวกเขาดูหนังเมื่อคืน',t:'past-simple',ev:['watched = V2','last night','อดีตชัดเจน'],ex:'กริยาปกติในอดีตมักเติม -ed'},
+ {s:'She did not eat breakfast this morning.',th:'เธอไม่ได้กินอาหารเช้าเมื่อเช้านี้',t:'past-simple',ev:['did not + V1','eat = V1','this morning ในอดีต'],ex:'มี did แล้ว กริยากลับเป็น V1 เสมอ'},
+ {s:'Did you finish your homework?',th:'คุณทำการบ้านเสร็จไหม',t:'past-simple',ev:['Did ขึ้นต้น','finish = V1','ถามอดีต'],ex:'คำถาม Past Simple ใช้ Did + S + V1?'},
+ {s:'We played football after school yesterday.',th:'พวกเราเล่นฟุตบอลหลังเลิกเรียนเมื่อวาน',t:'past-simple',ev:['played = V2','yesterday','จบไปแล้ว'],ex:'yesterday เป็นหลักฐานสำคัญของ Past Simple'},
+ {s:'I will call you tomorrow.',th:'ฉันจะโทรหาคุณพรุ่งนี้',t:'future-simple',ev:['will + call','tomorrow','อนาคต'],ex:'Future Simple ใช้ will + V1'},
+ {s:'She will visit her grandmother next week.',th:'เธอจะไปเยี่ยมยายสัปดาห์หน้า',t:'future-simple',ev:['will + visit','next week','ยังไม่เกิดขึ้น'],ex:'next week บอกเวลาอนาคต'},
+ {s:'They will not play outside today.',th:'พวกเขาจะไม่เล่นข้างนอกวันนี้',t:'future-simple',ev:['will not + play','V1 หลัง will','อนาคต/การตัดสินใจ'],ex:'ปฏิเสธ Future Simple ใช้ will not + V1'},
+ {s:'Will he join the meeting?',th:'เขาจะเข้าร่วมประชุมไหม',t:'future-simple',ev:['Will ขึ้นต้น','join = V1','ถามอนาคต'],ex:'คำถาม Future Simple ใช้ Will + S + V1?'},
+ {s:'We will study harder next term.',th:'พวกเราจะตั้งใจเรียนมากขึ้นเทอมหน้า',t:'future-simple',ev:['will + study','next term','อนาคต'],ex:'หลัง will ใช้กริยาช่อง 1 ไม่เติม s/es'},
+ {s:'I have finished my homework.',th:'ฉันทำการบ้านเสร็จแล้ว',t:'present-perfect',ev:['have + finished','finished = V3','ผลเกี่ยวกับปัจจุบัน'],ex:'Present Perfect ใช้ have/has + V3'},
+ {s:'She has eaten breakfast already.',th:'เธอกินอาหารเช้าแล้ว',t:'present-perfect',ev:['has + eaten','eaten = V3','already'],ex:'already มักใช้กับ Present Perfect เพื่อบอกว่าทำแล้ว'},
+ {s:'They have lived here for five years.',th:'พวกเขาอาศัยอยู่ที่นี่มา 5 ปี',t:'present-perfect',ev:['have + lived','for five years','ต่อเนื่องถึงปัจจุบัน'],ex:'for + ช่วงเวลา ใช้บอกว่านานเท่าไร'},
+ {s:'Have you ever seen a whale?',th:'คุณเคยเห็นวาฬไหม',t:'present-perfect',ev:['Have ขึ้นต้น','seen = V3','ever'],ex:'ever ใช้ถามประสบการณ์ว่าเคยไหม'},
+ {s:'Dad has just arrived home.',th:'พ่อเพิ่งกลับถึงบ้าน',t:'present-perfect',ev:['has + arrived','just','เพิ่งเกิดขึ้น'],ex:'just เป็นคำบอกว่าเพิ่งทำเสร็จ'},
+ {s:'Although it was raining, we played football yesterday.',th:'แม้ว่าฝนกำลังตก เราก็เล่นฟุตบอลเมื่อวาน',t:'past-simple',ev:['played = V2','yesterday','เหตุการณ์หลักจบแล้ว'],ex:'Boss Case: ดูกริยาหลักและเวลา yesterday'},
+ {s:'Listen! The birds are singing in the tree.',th:'ฟังสิ! นกกำลังร้องเพลงบนต้นไม้',t:'present-continuous',ev:['Listen!','are + singing','กำลังเกิดขึ้นตอนนี้'],ex:'คำว่า Listen! ชี้ให้ดูเหตุการณ์ที่กำลังเกิดขึ้น'},
+ {s:'My sister has lost her keys.',th:'พี่สาว/น้องสาวของฉันทำกุญแจหาย',t:'present-perfect',ev:['has + lost','lost = V3','ผลยังเกี่ยวกับตอนนี้'],ex:'กุญแจหายแล้ว ผลคือยังหาไม่เจอตอนนี้'},
+ {s:'Does he work in a hospital?',th:'เขาทำงานในโรงพยาบาลไหม',t:'present-simple',ev:['Does ขึ้นต้น','work = V1','ถามข้อมูลทั่วไป'],ex:'คำถาม Present Simple ใช้ Do/Does + S + V1?'},
+ {s:'The team will win the game.',th:'ทีมนั้นจะชนะการแข่งขัน',t:'future-simple',ev:['will + win','win = V1','คาดการณ์อนาคต'],ex:'will ใช้พูดถึงอนาคตหรือการคาดการณ์'}
+];
+let player='นักสืบคนเก่ง', idx=0, score=0, correct=0, history=[], timer=null, timeLimit=15, left=15, locked=false, audioCtx=null, gameQuestions=[];
+function initAudio(){if(!audioCtx){audioCtx=new (window.AudioContext||window.webkitAudioContext)()} if(audioCtx.state==='suspended') audioCtx.resume()}
+function tone(f=500,d=.08,type='sine',vol=.05,delay=0){initAudio();const o=audioCtx.createOscillator(),g=audioCtx.createGain();o.type=type;o.frequency.setValueAtTime(f,audioCtx.currentTime+delay);g.gain.setValueAtTime(.001,audioCtx.currentTime+delay);g.gain.linearRampToValueAtTime(vol,audioCtx.currentTime+delay+.01);g.gain.exponentialRampToValueAtTime(.001,audioCtx.currentTime+delay+d);o.connect(g);g.connect(audioCtx.destination);o.start(audioCtx.currentTime+delay);o.stop(audioCtx.currentTime+delay+d+.04)}
+function sfxClick(){tone(520,.05,'triangle',.04);tone(820,.05,'triangle',.035,.04)}function sfxGood(){tone(620,.08,'sine',.05);tone(900,.08,'sine',.055,.08);tone(1180,.12,'triangle',.055,.16)}function sfxBad(){tone(170,.13,'sawtooth',.05);tone(95,.18,'square',.035,.1)}function sfxTick(){tone(880,.04,'square',.025)}function sfxStamp(){tone(240,.05,'square',.06);tone(90,.08,'sine',.04,.04)}function sfxWin(){[520,660,780,1040,1320].forEach((f,i)=>tone(f,.11,'triangle',.06,i*.08))}
+function go(id){clearInterval(timer);document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');sfxClick()}
+function shuffle(a){return [...a].sort(()=>Math.random()-.5)}
+function makeMixedCases(list){
+  const groups={};
+  list.forEach(q=>{(groups[q.t]||(groups[q.t]=[])).push(q)});
+  Object.keys(groups).forEach(k=>groups[k]=shuffle(groups[k]));
+  const result=[];
+  let last='';
+  while(result.length<list.length){
+    const available=Object.keys(groups).filter(k=>groups[k].length && k!==last);
+    const pool=available.length?available:Object.keys(groups).filter(k=>groups[k].length);
+    const maxLeft=Math.max(...pool.map(k=>groups[k].length));
+    const candidates=pool.filter(k=>groups[k].length===maxLeft);
+    const pick=shuffle(candidates)[0];
+    result.push(groups[pick].pop());
+    last=pick;
+  }
+  return result;
+}
+function timeFor(i){return i<10?15:i<20?10:7}
+function levelFor(i){return i<10?'🟢 Level 1 · 15 วิ':i<20?'🟡 Level 2 · 10 วิ':'🔴 Level 3 · 7 วิ'}
+function loadBest(){const b=localStorage.getItem('td_best');document.getElementById('bestBox').textContent='Best: '+(b?b+' คะแนน':'-')}loadBest();
+function startGame(){player=document.getElementById('playerName').value.trim()||'นักสืบคนเก่ง';idx=0;score=0;correct=0;history=[];locked=false;gameQuestions=makeMixedCases(questions);go('game');renderCase()}
+function renderCase(){if(idx>=gameQuestions.length){finishGame();return}locked=false;const q=gameQuestions[idx];timeLimit=timeFor(idx);left=timeLimit;document.getElementById('namePill').textContent='🕵️ '+player;document.getElementById('casePill').textContent=`CASE ${String(idx+1).padStart(2,'0')}/30`;document.getElementById('scorePill').textContent='⭐ '+score;document.getElementById('timePill').textContent='⏱ '+left;document.getElementById('caseBadge').textContent=`📂 CASE ${String(idx+1).padStart(2,'0')}`+(idx>=25?' 👑 BOSS':'');document.getElementById('levelPill').textContent=levelFor(idx);document.getElementById('sentenceText').textContent=q.s;document.getElementById('thaiHint').textContent=q.th;document.getElementById('timerBar').style.width='100%';document.getElementById('quizPanel').classList.remove('shake');const box=document.getElementById('choices');box.innerHTML='';shuffle(TENSES).forEach(t=>{const b=document.createElement('button');b.className='choice';b.innerHTML=`<span class="ico">${t.icon}</span><span>${t.label}</span>`;b.onclick=()=>answer(t.key,b);b.dataset.key=t.key;box.appendChild(b)});startTimer()}
+function startTimer(){clearInterval(timer);const start=Date.now();timer=setInterval(()=>{const elapsed=(Date.now()-start)/1000;left=Math.max(0,timeLimit-elapsed);const sec=Math.ceil(left);document.getElementById('timePill').textContent='⏱ '+sec;document.getElementById('timerBar').style.width=(left/timeLimit*100)+'%';if(sec<=3 && sec>0 && Math.abs(left-sec)<.12){sfxTick();document.getElementById('quizPanel').classList.add('shake');setTimeout(()=>document.getElementById('quizPanel').classList.remove('shake'),220)}if(left<=0){clearInterval(timer);timeoutCase()}},80)}
+function answer(key,btn){if(locked)return;locked=true;clearInterval(timer);const q=gameQuestions[idx];const ok=key===q.t;document.querySelectorAll('.choice').forEach(b=>{b.disabled=true;if(b.dataset.key===q.t)b.classList.add('correct')});if(!ok){btn.classList.add('wrong');sfxBad()}else{sfxGood();correct++;let bonus=idx>=25?2:0;score+=1+bonus+(left>0?1:0)}history.push({caseNo:idx+1,s:q.s,th:q.th,chosen:key,correct:q.t,ok,ev:q.ev,ex:q.ex,time:Math.ceil(left)});showFeedback(ok,false)}
+function timeoutCase(){if(locked)return;locked=true;const q=gameQuestions[idx];document.querySelectorAll('.choice').forEach(b=>{b.disabled=true;if(b.dataset.key===q.t)b.classList.add('correct')});sfxBad();history.push({caseNo:idx+1,s:q.s,th:q.th,chosen:'timeout',correct:q.t,ok:false,ev:q.ev,ex:q.ex,time:0});showFeedback(false,true)}
+function tenseLabel(key){return TENSES.find(t=>t.key===key)?.label||key}function tenseIcon(key){return TENSES.find(t=>t.key===key)?.icon||'🔎'}
+function showFeedback(ok,timeout){const h=history[history.length-1];const modal=document.getElementById('feedbackModal');modal.innerHTML=`<div class="${ok?'stampSolved':'stampSolved stampWrong'}">${ok?'✅ CASE SOLVED':'❌ CASE UNSOLVED'}</div><div class="fbTitle">${timeout?'หมดเวลา!':ok?'จับหลักฐานถูก!':'ยังไม่ถูกจ้า'}</div><div class="tenseTag">${tenseIcon(h.correct)} ${tenseLabel(h.correct)}</div><div class="caseSentence">${h.s}</div><div class="caseThai">${h.th}</div><div class="evidenceGrid">${h.ev.map((e,i)=>`<div class="evidence"><b>Evidence ${i+1}</b>${e}</div>`).join('')}</div><div class="explain">💡 ${h.ex}</div><button class="btn fbButton" onclick="nextCase()">${idx>=29?'ดูรายงานภารกิจ':'เข้าใจแล้ว ไป CASE ถัดไป ➡️'}</button>`;document.getElementById('feedbackOverlay').classList.add('show');if(ok){sfxStamp();burst(18)}}
+function nextCase(){document.getElementById('feedbackOverlay').classList.remove('show');idx++;renderCase()}
+function finishGame(){go('result');const pct=Math.round(correct/gameQuestions.length*100);let rank='Junior';let msg='เริ่มจับหลักฐานได้แล้ว ลองเล่นซ้ำอีกครั้งเพื่อจำแพทเทิร์น tense ให้แม่นขึ้น 💪';if(pct>=95){rank='Tense Legend';msg='สุดยอดนักสืบ! จับหลักฐาน tense ได้ไวและแม่นมาก 👑'}else if(pct>=85){rank='Master Detective';msg='เก่งมาก! เห็นหลักฐานแล้วสรุป tense ได้แม่นมาก 🥇'}else if(pct>=70){rank='Senior Detective';msg='ดีมาก! เริ่มแยก tense ได้ชัดขึ้นแล้ว 🥈'}
+ document.getElementById('rankText').textContent=msg;document.getElementById('finalScore').textContent=score;document.getElementById('finalCorrect').textContent=correct+'/'+gameQuestions.length;document.getElementById('finalPct').textContent=pct+'%';document.getElementById('finalRank').textContent=rank;const best=Number(localStorage.getItem('td_best')||0);if(score>best)localStorage.setItem('td_best',score);loadBest();const box=document.getElementById('reviewBox');box.innerHTML='';history.forEach(h=>{const d=document.createElement('div');d.className='reviewItem';d.innerHTML=`<b>${h.ok?'✅':'❌'} CASE ${String(h.caseNo).padStart(2,'0')}: ${h.s}</b><br><span class="miniTag">ตอบ: ${h.chosen==='timeout'?'หมดเวลา':tenseLabel(h.chosen)}</span><span class="miniTag">เฉลย: ${tenseLabel(h.correct)}</span><br><span class="miniTag">หลักฐาน: ${h.ev.join(' · ')}</span>`;box.appendChild(d)});sfxWin();burst(120)}
+function burst(n){const c=document.getElementById('confetti');for(let i=0;i<n;i++){const p=document.createElement('div');p.className='piece';p.style.left=Math.random()*100+'vw';p.style.background=['#ffd66b','#69ecff','#ff74c9','#8cffbd','#fff'][Math.floor(Math.random()*5)];p.style.animationDelay=Math.random()*0.4+'s';c.appendChild(p);setTimeout(()=>p.remove(),2400)}}
+function openGuide(){sfxClick();document.getElementById('guideOverlay').classList.add('show')}function closeGuide(e){if(e&&e.target&&e.target.id!=='guideOverlay')return;sfxClick();document.getElementById('guideOverlay').classList.remove('show')}
+</script>
+</body>
+</html>
